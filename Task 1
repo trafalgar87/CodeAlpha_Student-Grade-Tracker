@@ -1,0 +1,40 @@
+import java.util.*;
+
+public class StudentGradeTracker {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> studentNames = new ArrayList<>();
+        ArrayList<Integer> grades = new ArrayList<>();
+
+        System.out.print("Enter the number of students: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // Consume newline
+
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter student name: ");
+            String name = sc.nextLine();
+            studentNames.add(name);
+
+            System.out.print("Enter grade for " + name + ": ");
+            int grade = sc.nextInt();
+            grades.add(grade);
+            sc.nextLine(); // Consume newline
+        }
+
+        int total = 0, max = grades.get(0), min = grades.get(0);
+        for (int grade : grades) {
+            total += grade;
+            if (grade > max) max = grade;
+            if (grade < min) min = grade;
+        }
+        double avg = (double) total / grades.size();
+
+        System.out.println("\n--- Grade Summary ---");
+        for (int i = 0; i < n; i++) {
+            System.out.println(studentNames.get(i) + ": " + grades.get(i));
+        }
+        System.out.println("Average Grade: " + avg);
+        System.out.println("Highest Grade: " + max);
+        System.out.println("Lowest Grade: " + min);
+    }
+}
